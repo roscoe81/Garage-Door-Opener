@@ -26,7 +26,7 @@ class NorthcliffGarageDoorOpener(object):
         self.client = mqtt.Client('garage')
         self.client.on_connect = self.on_connect
         self.client.on_message = self.on_message
-        self.client.connect('studypi.local', 1883, 60)
+        self.client.connect(<Your mqtt Broker Here', 1883, 60)
         self.client.loop_start()
         self.client.subscribe('GarageControl')
         self.client.publish('GarageStatus', '{"service": "Closed"}') # Set current Garage Door state to closed
