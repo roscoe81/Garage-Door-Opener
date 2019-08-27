@@ -6,7 +6,7 @@ A simple Raspberry Pi project to open a garage door remotely through mqtt comman
 
 ## Hardware Photographs
 ### Remote Control Connection
-![Garage Door Opener Remtote Hack](https://github.com/roscoe81/Garage-Door-Opener/blob/master/Schematics%20and%20Photos/IMG_3128.png)
+![Garage Door Opener Remote Hack](https://github.com/roscoe81/Garage-Door-Opener/blob/master/Schematics%20and%20Photos/IMG_3128.png)
 
 ### Completed Hardware
 ![Garage Door Hardware](https://github.com/roscoe81/Garage-Door-Opener/blob/master/Schematics%20and%20Photos/IMG_3204.png)
