@@ -1,5 +1,5 @@
-# Northcliff Garage Door Opener Version 1.1 with Restart Message
 #!/usr/bin/ env python3
+# Northcliff Garage Door Opener Version 1.5 Gen
 import RPi.GPIO as GPIO
 import time
 from datetime import datetime
@@ -26,14 +26,14 @@ class NorthcliffGarageDoorOpener(object):
         self.client = mqtt.Client('garage')
         self.client.on_connect = self.on_connect
         self.client.on_message = self.on_message
-        self.client.connect(<Your mqtt Broker Here', 1883, 60)
+        self.client.connect('<Your mqtt Broker Here>', 1883, 60)
         self.client.loop_start()
-        self.client.subscribe('GarageControl')
         self.client.publish('GarageStatus', '{"service": "Closed"}') # Set current Garage Door state to closed
 
     def on_connect(self, client, userdata, flags, rc):
         time.sleep(1)
         self.print_status('Connected to mqtt server with result code '+str(rc)+' on')
+        self.client.subscribe('GarageControl')
 
     def on_message(self, client, userdata, msg): # Handles incoming mqtt messages
         #print("Message", str(msg.topic), str(msg.payload.decode('utf-8')))
@@ -49,14 +49,14 @@ class NorthcliffGarageDoorOpener(object):
                 self.door_open = False
 
     def heartbeat_ack(self):
-        self.print_status('Heartbeat received from Home Manager on ')
+        #self.print_status('Heartbeat received from Home Manager on ')
         self.heartbeat_count = 0
         self.no_heartbeat_ack = False
 
     def process_home_manager_heartbeat(self):
         self.heartbeat_count +=1
         if self.heartbeat_count == 240:
-            self.print_status('Sending Heartbeat to Home Manager on ')
+            #self.print_status('Sending Heartbeat to Home Manager on ')
             self.send_heartbeat_to_home_manager()
         if self.heartbeat_count > 320:
             self.print_status('Home Manager Heartbeat Lost. Restarting code on ')
